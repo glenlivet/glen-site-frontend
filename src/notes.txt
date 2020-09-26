@@ -1,5 +1,0 @@
-1. props for login panel:
-  1. default user/pass values
-  2. error message / error state
-  3. login url
-  4. redirect url

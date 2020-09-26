@@ -8,7 +8,9 @@ import "primereact/resources/themes/saga-blue/theme.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 
+import { PrivateRoute } from "../services/authService";
 import LoginForm from "./LoginForm";
+import FileList from "./FileList";
 
 import "./App.scss";
 
@@ -46,7 +48,7 @@ const items = [
 ];
 
 function Dashboard() {
-  return <div>Dashboard Page!</div>;
+  return <FileList />;
 }
 
 class App extends Component<any, any> {
@@ -58,9 +60,9 @@ class App extends Component<any, any> {
             <Menubar model={items} />
           </Route>
           <Switch>
-            <Route path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <Dashboard />
-            </Route>
+            </PrivateRoute>
             <Route exact path="/">
               <div className="p-d-flex p-jc-center p-mt-2">
                 <LoginForm redirectUrl="/dashboard" />
