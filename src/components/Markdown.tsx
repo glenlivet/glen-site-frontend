@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
 
+import CodeBlock from "./CodeBlock";
+
 import "./github-markdown.css";
 import "./Markdown.scss";
 
@@ -57,6 +59,7 @@ A component by [Espen Hovlandsdal](https://espen.codes/)
       <ReactMarkdown
         source={input}
         className="g-markdown-container markdown-body p-pt-3 p-pl-6"
+        renderers={{ code: CodeBlock }}
       />
     );
   }
