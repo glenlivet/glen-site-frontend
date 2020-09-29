@@ -27,13 +27,14 @@ class LoginForm extends Component<any, any> {
     };
   }
 
-  onSubmit = async () => {
+  onSubmit = async (event: any) => {
+    event.preventDefault();
     let resp: Response;
     try {
       resp = await requestLogin(this.state.username, this.state.password);
       if (resp.ok) {
-        this.setState({ status: STATE_SUCCESSFUL });
         handleLoginOkResp(resp);
+        this.setState({ status: STATE_SUCCESSFUL });
       } else {
         this.setState({ status: STATE_FAILED });
         if (resp.status >= 400 && resp.status < 500) {
@@ -59,7 +60,7 @@ class LoginForm extends Component<any, any> {
             <Message severity="error" text={this.state.errorMsg}></Message>
           </div>
         )}
-        <div className="p-fluid p-p-5 login-form">
+        <form className="p-fluid p-p-5 login-form">
           <div className="p-field">
             <label htmlFor="username">Username</label>
             <InputText
@@ -90,7 +91,7 @@ class LoginForm extends Component<any, any> {
           {this.state.status === STATE_SUCCESSFUL && (
             <Redirect to={this.props.redirectUrl} />
           )}
-        </div>
+        </form>
       </div>
     );
   }
